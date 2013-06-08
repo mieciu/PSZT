@@ -74,9 +74,11 @@ public class FuzzyStatement implements LogicalConnective {
         return null;
     }
 
-    /* TO JEST KUPA POPRAWIC */
+    /* TO JEST KUPA POPRAWIC asdf */
     public HealthLevels defuzzification()  {
-       return HealthLevels.CRITICAL;
+        if(Value > 70)
+            return HealthLevels.HEALTHY;
+        else if (Value > 20)
     }
 
     public TrackedLevels defuzzification2() {

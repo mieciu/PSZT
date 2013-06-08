@@ -10,8 +10,7 @@ package pl.pszt.fuzzylogic;
 public class FuzzyMain {
     public static void main(String [ ] args)
     {
-        FuzzyStatement st1 = new FuzzyStatement("I am tracked",0.6);
-        st1.setValue(0.7);
-        System.out.print("Powiodlo sie");
+        FuzzyStatement statement = new FuzzyStatement("I am tracked",0.6);
+        statement.defuzzification()
     }
 }
