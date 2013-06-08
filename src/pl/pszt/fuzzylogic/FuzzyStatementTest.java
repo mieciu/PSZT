@@ -90,6 +90,7 @@ public class FuzzyStatementTest extends TestCase{
         result.disjunction(testStatement,argument);
         assertEquals(result.getValue(), 0.6);
     }
+
     public void testOrOperatorSymmetry() {
         FuzzyStatement testStatement = new FuzzyStatement("Test",0.3);
         FuzzyStatement argument = new FuzzyStatement("Test",0.6);
@@ -100,7 +101,40 @@ public class FuzzyStatementTest extends TestCase{
         assertEquals(result.getValue(), 0.6);
     }
 
+    public void testIncrementation1() {
+        FuzzyStatement testStatement = new FuzzyStatement("Test",0.1);
+        testStatement.incrementValue(0.23);
+        assertEquals(testStatement.getValue(),0.33);
+    }
 
+    public void testIncrementation2() {
+        FuzzyStatement testStatement = new FuzzyStatement("Test",0.1);
+        int i = 0;
+        while(i<5) {
+            testStatement.incrementValue(0.1);
+            ++i;
+        }
+        assertEquals(testStatement.getValue(),0.6);
+    }
+    public void testIncrementation3() {
+        FuzzyStatement testStatement = new FuzzyStatement("Test",0.1);
+        int i = 0;
+        while(i<20) {
+            testStatement.incrementValue(0.3);
+            ++i;
+        }
+        assertEquals(testStatement.getValue(),1.0);
+    }
 
+    /*    Chyba nie zakladamy przypadku inkrenentacji o ujemne ?!
+    public void testIncrementation4() {
+        FuzzyStatement testStatement = new FuzzyStatement("Test",0.1);
+        int i = 0;
+        while(i<20) {
+            testStatement.incrementValue(-0.1);
+            ++i;
+        }
+        assertEquals(testStatement.getValue(),0.0);
+    }   */
 
 }
