@@ -8,8 +8,8 @@ package pl.pszt.fuzzylogic;
  * To change this template use File | Settings | File Templates.
  */
 public enum TrackedLevels {
-    TRACKED,            /* */
-    RATHERTRACKED,      /* */
-    RATHERNOTTRACKED,   /* */
-    NOTTRACKED          /* */
+    TRACKED,            /* > 0.75 */
+    RATHERTRACKED,      /* <= 0.75>*/
+    RATHERNOTTRACKED,   /* <= 0.5*/
+    NOTTRACKED          /* == 0.0*/
 }

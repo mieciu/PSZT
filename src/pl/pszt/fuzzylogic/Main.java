@@ -7,10 +7,10 @@ package pl.pszt.fuzzylogic;
  * Time: 13:34
  * To change this template use File | Settings | File Templates.
  */
-public class FuzzyMain {
+public class Main {
     public static void main(String [ ] args)
     {
         FuzzyStatement statement = new FuzzyStatement("I am tracked",0.6);
-        statement.defuzzification()
+
     }
 }
