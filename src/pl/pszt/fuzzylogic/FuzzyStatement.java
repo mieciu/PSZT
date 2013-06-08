@@ -1,4 +1,5 @@
 package pl.pszt.fuzzylogic;
+
 /**
  * Created with IntelliJ IDEA.
  * User: przemek
@@ -20,6 +21,11 @@ public class FuzzyStatement implements LogicalConnective {
             Value = 0.0;
         else
             Value = initialValue;
+    }
+
+    public FuzzyStatement(final String statement) {
+        Statement = statement;
+        Value = 0.5;
     }
 
     public String getStatement() {
@@ -62,14 +68,16 @@ public class FuzzyStatement implements LogicalConnective {
     }
 
     @Override
-    public FuzzyStatement conjunction(FuzzyStatement statement) {
-        setValue(Math.min(getValue(),statement.getValue()));
+    public FuzzyStatement conjunction(FuzzyStatement statementA,FuzzyStatement statementB) {
+        FuzzyStatement result = new FuzzyStatement("Result");
+        setValue(Math.min(statementA.getValue(), statementB.getValue()));
         return null;
     }
 
     @Override
-    public FuzzyStatement disjunction(FuzzyStatement statement) {
-        setValue(Math.max(getValue(),statement.getValue()));
+    public FuzzyStatement disjunction(FuzzyStatement statementA, FuzzyStatement statementB) {
+        FuzzyStatement result = new FuzzyStatement("Result");
+        setValue(Math.max(statementA.getValue(), statementB.getValue()));
         return null;
     }
 
