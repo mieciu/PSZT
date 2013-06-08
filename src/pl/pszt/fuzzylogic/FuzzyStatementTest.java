@@ -64,27 +64,40 @@ public class FuzzyStatementTest extends TestCase{
     public void testAndOperator() {
         FuzzyStatement testStatement = new FuzzyStatement("Test",0.3);
         FuzzyStatement argument = new FuzzyStatement("Test",0.6);
-        testStatement.conjunction(argument);
-        assertEquals(testStatement.getValue(), 0.3);
+
+        FuzzyStatement result = new FuzzyStatement("Test");
+
+        result.conjunction(testStatement,argument);
+        assertEquals(result.getValue(), 0.3);
+
     }
     public void testAndOperatorSymmetry() {
         FuzzyStatement testStatement = new FuzzyStatement("Test",0.3);
         FuzzyStatement argument = new FuzzyStatement("Test",0.6);
-        argument.conjunction(testStatement);
-        assertEquals(testStatement.getValue(), 0.3);
+
+        FuzzyStatement result = new FuzzyStatement("Test");
+
+        result.conjunction(argument,testStatement);
+        assertEquals(result.getValue(), 0.3);
     }
 
     public void testOrOperator() {
         FuzzyStatement testStatement = new FuzzyStatement("Test",0.3);
         FuzzyStatement argument = new FuzzyStatement("Test",0.6);
-        testStatement.disjunction(argument);
-        assertEquals(testStatement.getValue(), 0.6);
+
+        FuzzyStatement result = new FuzzyStatement("Test");
+
+        result.disjunction(testStatement,argument);
+        assertEquals(result.getValue(), 0.6);
     }
     public void testOrOperatorSymmetry() {
         FuzzyStatement testStatement = new FuzzyStatement("Test",0.3);
         FuzzyStatement argument = new FuzzyStatement("Test",0.6);
-        argument.disjunction(testStatement);
-        assertEquals(testStatement.getValue(), 0.6);
+
+        FuzzyStatement result = new FuzzyStatement("Test");
+
+        result.disjunction(argument,testStatement);
+        assertEquals(result.getValue(), 0.6);
     }
 
 
