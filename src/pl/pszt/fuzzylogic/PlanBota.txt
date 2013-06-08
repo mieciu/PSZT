@@ -1,0 +1,31 @@
+Fuzzy Bot.
+
+Założenia projektowe:
+- Bot ma się dobrze sprawdzać w walce z człowiekiem.
+- Jest tym ostrożniejszy im mniej wytrzymałości ma.
+- Gdy ma dużo wytrzymałości skupia się na jak najskuteczniejszym wyeliminowaniu przeciwników.
+
+Taktyka na planszy:
+- Stoi w rogu i strzela.
+- Jak nie ma do czego, obraca lufę w tą i z powrotem o 90 stopni i szuka.
+- Ucieczka polega na zmianie rogu, z którego strzela.
+- Jadąc z rogu do rogu, ma lufę skierowaną prostopadle do moku mapy po którym się porusza i strzela do mijanych wrogów.
+
+Rozpoznawanie zagrożenia:
+D - Dużo wytrzymałości.
+S - Wytrzymałość w średnim przedziale.
+M - Mało wytrzymałości.
+
+    0 ostatnio otrzymanych ciosów (Stan NOTTRACKED):
+        D, S, M: Stoi i strzela.
+
+    1 ostatnio otrzymany cios(Stan RATHERNOTTRACKED):
+        D, S: Stoi i strzela.
+        M: Ucieka.
+
+    2 ostatnio otrzymane strzały (Stan RATHERTRACKED):
+        D: Stoi i strzela.
+        S, M: Ucieka.
+
+    3 ostatnio otrzymane strzały (Stan TRACKED):
+        D, S, M: Ucieka.

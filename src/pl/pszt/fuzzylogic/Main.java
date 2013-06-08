@@ -11,7 +11,5 @@ public class Main {
     public static void main(String [ ] args)
     {
         FuzzyStatement statement = new FuzzyStatement("I am tracked",0.6);
-        System.out.print("Badabuu!"); //crap. commit testowy.
-        System.out.print("Jakiś drugi\nsmiec.");//crap do drugiego probnego commita
     }
 }
