@@ -198,17 +198,61 @@ public class FuzzyStatementTest extends TestCase{
         assertEquals(health.defuzzificationOfHealthLevels(),HealthLevels.WOUNDED);
     }
 
-    /*
-    public TrackedLevels defuzzificationOfTrackedLevels() {
-        if (Value == 0.0)
-            return TrackedLevels.NOTTRACKED;
-        else if (Value <= 0.5)
-            return TrackedLevels.RATHERNOTTRACKED;
-        else if (Value <= 0.75)
-            return TrackedLevels.RATHERTRACKED;
-        else
-            return TrackedLevels.TRACKED;
+    public void testTrackDefuz1(){
+        FuzzyStatement spy = new FuzzyStatement("Spy");
+        assertEquals(spy.defuzzificationOfTrackedLevels(),TrackedLevels.RATHERNOTTRACKED);
+    }
 
-    }*/
+    public void testTrackDefuz2(){
+        FuzzyStatement spy = new FuzzyStatement("Spy");
+        spy.setValue(0);
+        assertEquals(spy.defuzzificationOfTrackedLevels(),TrackedLevels.NOTTRACKED);
+    }
+
+    public void testTrackDefuz3(){
+        FuzzyStatement spy = new FuzzyStatement("Spy");
+        spy.setValue(-30);
+        assertEquals(spy.defuzzificationOfTrackedLevels(),TrackedLevels.NOTTRACKED);
+    }
+
+    public void testTrackDefuz4(){
+        FuzzyStatement spy = new FuzzyStatement("Spy");
+        spy.setValue(0.2);
+        spy.incrementValue(0.2999);
+        assertEquals(spy.defuzzificationOfTrackedLevels(),TrackedLevels.RATHERNOTTRACKED);
+    }
+
+    public void testTrackDefuz5(){
+        FuzzyStatement spy = new FuzzyStatement("Spy");
+        spy.setValue(0.75);
+        assertEquals(spy.defuzzificationOfTrackedLevels(),TrackedLevels.RATHERTRACKED);
+    }
+
+    public void testTrackDefuz6(){
+        FuzzyStatement spy = new FuzzyStatement("Spy");
+        spy.setValue(300);
+        spy.incrementValue(0.2999);
+        assertEquals(spy.defuzzificationOfTrackedLevels(),TrackedLevels.TRACKED);
+    }
+
+    public void testTrackDefuz7(){
+        FuzzyStatement spy = new FuzzyStatement("Spy");
+        spy.setValue(0.5);
+        spy.incrementValue(0.2999);
+        spy.decrementValue(0.4);
+        assertEquals(spy.defuzzificationOfTrackedLevels(),TrackedLevels.RATHERNOTTRACKED);
+    }
+
+    public void testTrackDefuz8(){
+        FuzzyStatement spy = new FuzzyStatement("Spy");
+        spy.setValue(0.9);
+        assertEquals(spy.defuzzificationOfTrackedLevels(),TrackedLevels.TRACKED);
+    }
+
+    public void testTrackDefuz9(){
+        FuzzyStatement spy = new FuzzyStatement("Spy");
+        spy.setValue(0.6);
+        assertEquals(spy.defuzzificationOfTrackedLevels(),TrackedLevels.RATHERTRACKED);
+    }
 
 }
