@@ -126,6 +126,7 @@ public class FuzzyStatementTest extends TestCase{
         assertEquals(testStatement.getValue(),1.0);
     }
 
+    //TODO
     /*    Chyba nie zakladamy przypadku inkrenentacji o ujemne ?!
     public void testIncrementation4() {
         FuzzyStatement testStatement = new FuzzyStatement("Test",0.1);
@@ -136,5 +137,7 @@ public class FuzzyStatementTest extends TestCase{
         }
         assertEquals(testStatement.getValue(),0.0);
     }   */
+
+
 
 }
