@@ -138,6 +138,64 @@ public class FuzzyStatementTest extends TestCase{
         assertEquals(testStatement.getValue(),0.0);
     }   */
 
+    public void testDefuzCall1() {
+        FuzzyStatement stat = new FuzzyStatement("MyHealth",1);
+        HealthLevels ret = stat.defuzzificationOfHealthLevels();
+        assertEquals(ret, HealthLevels.HEALTHY);
+    }
+    public void testDefuzCall2() {
+        FuzzyStatement stat = new FuzzyStatement("MyHealth",1);
+        assertEquals(stat.defuzzificationOfHealthLevels(), HealthLevels.HEALTHY);
+    }
 
+    public void testHealthDefuz1() {
+        FuzzyStatement health = new FuzzyStatement("Health");
+        health.setValue(0.2);
+        health.incrementValue(0.9);
+        assertEquals(health.defuzzificationOfHealthLevels(),HealthLevels.HEALTHY);
+    }
+
+    public void testHealthDefuz2() {
+        FuzzyStatement health = new FuzzyStatement("Health");
+        health.setValue(0.69);
+        assertEquals(health.defuzzificationOfHealthLevels(),HealthLevels.WOUNDED);
+    }
+
+    public void testHealthDefuz3() {
+        FuzzyStatement health = new FuzzyStatement("Health");
+        health.setValue(0.7);
+        assertEquals(health.defuzzificationOfHealthLevels(),HealthLevels.WOUNDED);
+    }
+
+    public void testHealthDefuz4() {
+        FuzzyStatement health = new FuzzyStatement("Health");
+        health.setValue(0.2);
+        assertEquals(health.defuzzificationOfHealthLevels(),HealthLevels.CRITICAL);
+    }
+
+    public void testHealthDefuz5() {
+        FuzzyStatement health = new FuzzyStatement("Health");
+        health.setValue(0.2);
+        health.incrementValue(232);
+        assertEquals(health.defuzzificationOfHealthLevels(),HealthLevels.HEALTHY);
+    }
+
+    public void testHealthDefuz6() {
+        FuzzyStatement health = new FuzzyStatement("Health");
+        assertEquals(health.defuzzificationOfHealthLevels(),HealthLevels.WOUNDED);
+    }
+
+    /*
+    public TrackedLevels defuzzificationOfTrackedLevels() {
+        if (Value == 0.0)
+            return TrackedLevels.NOTTRACKED;
+        else if (Value <= 0.5)
+            return TrackedLevels.RATHERNOTTRACKED;
+        else if (Value <= 0.75)
+            return TrackedLevels.RATHERTRACKED;
+        else
+            return TrackedLevels.TRACKED;
+
+    }*/
 
 }
