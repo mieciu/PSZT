@@ -22,7 +22,6 @@ public class FuzzyStatement implements LogicalConnective {
             Value = initialValue;
     }
 
-
     public String getStatement() {
         return Statement;
     }
@@ -74,14 +73,25 @@ public class FuzzyStatement implements LogicalConnective {
         return null;
     }
 
-    /* TO JEST KUPA POPRAWIC asdf */
-    public HealthLevels defuzzification()  {
-        if(Value > 70)
-            return HealthLevels.HEALTHY;
-        else if (Value > 20)
+    public HealthLevels defuzzificationOfHealthLevels()  {
+        if(Value <= 0.2)
+            return HealthLevels.CRITICAL;
+        else if (Value <= 0.7)
+            return HealthLevels.WOUNDED;
+        else
+            return  HealthLevels.HEALTHY;
     }
 
-    public TrackedLevels defuzzification2() {
-        return TrackedLevels.RATHERNOTTRACKED;
+    public TrackedLevels defuzzificationOfTrackedLevels() {
+        if (Value == 0.0)
+            return TrackedLevels.NOTTRACKED;
+        else if (Value <= 0.5)
+            return TrackedLevels.RATHERNOTTRACKED;
+        else if (Value <= 0.75)
+            return TrackedLevels.RATHERTRACKED;
+        else
+            return TrackedLevels.TRACKED;
+
     }
+
 }
