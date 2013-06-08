@@ -126,17 +126,30 @@ public class FuzzyStatementTest extends TestCase{
         assertEquals(testStatement.getValue(),1.0);
     }
 
-    //TODO
-    /*    Chyba nie zakladamy przypadku inkrenentacji o ujemne ?!
-    public void testIncrementation4() {
+    public void testDecrementation1() {
+        FuzzyStatement testStatement = new FuzzyStatement("Test",0.56);
+        testStatement.decrementValue(0.23);
+        assertEquals(testStatement.getValue(),0.33,0.00000001);
+    }
+
+    public void testDecrementation2() {
+        FuzzyStatement testStatement = new FuzzyStatement("Test",0.99);
+        int i = 0;
+        while(i<5) {
+            testStatement.decrementValue(0.1);
+            ++i;
+        }
+        assertEquals(testStatement.getValue(),0.49,0.00000001);
+    }
+    public void testDecrementation3() {
         FuzzyStatement testStatement = new FuzzyStatement("Test",0.1);
         int i = 0;
         while(i<20) {
-            testStatement.incrementValue(-0.1);
+            testStatement.decrementValue(0.3);
             ++i;
         }
         assertEquals(testStatement.getValue(),0.0);
-    }   */
+    }
 
     public void testDefuzCall1() {
         FuzzyStatement stat = new FuzzyStatement("MyHealth",1);
