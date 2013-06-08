@@ -79,5 +79,7 @@ public class FuzzyStatement implements LogicalConnective {
        return HealthLevels.CRITICAL;
     }
 
-    /* public TrackedLevels */
+    public TrackedLevels defuzzification2() {
+        return TrackedLevels.RATHERNOTTRACKED;
+    }
 }
