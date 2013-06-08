@@ -75,8 +75,16 @@ public class FuzzyStatementTest extends TestCase{
     }
 
     public void testOrOperator() {
-        FuzzyStatement testStatement = new FuzzyStatement("Test",0.7);
-
+        FuzzyStatement testStatement = new FuzzyStatement("Test",0.3);
+        FuzzyStatement argument = new FuzzyStatement("Test",0.6);
+        testStatement.disjunction(argument);
+        assertEquals(testStatement.getValue(), 0.6);
+    }
+    public void testOrOperatorSymmetry() {
+        FuzzyStatement testStatement = new FuzzyStatement("Test",0.3);
+        FuzzyStatement argument = new FuzzyStatement("Test",0.6);
+        argument.disjunction(testStatement);
+        assertEquals(testStatement.getValue(), 0.6);
     }
 
 

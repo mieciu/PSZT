@@ -68,7 +68,7 @@ public class FuzzyStatement implements LogicalConnective {
     }
 
     @Override
-    public FuzzyStatement dissjunction(FuzzyStatement statement) {
+    public FuzzyStatement disjunction(FuzzyStatement statement) {
         setValue(Math.max(getValue(),statement.getValue()));
         return null;
     }

@@ -10,5 +10,5 @@ package pl.pszt.fuzzylogic;
 public interface LogicalConnective {
     FuzzyStatement negation();
     FuzzyStatement conjunction(FuzzyStatement statement);
-    FuzzyStatement dissjunction(FuzzyStatement statement);
+    FuzzyStatement disjunction(FuzzyStatement statement);
 }
