@@ -21,7 +21,7 @@ public class FuzzyCornerBot extends Robot
     HealthLevels healthRange;
     FuzzyStatement fuzzyTracked;
     TrackedLevels trackedRange;
-    final int defuzzificationDelay = 10;
+    final int defuzzificationDelay = 2;
     int gunIncrement = 3;
 
     public void run() {
@@ -45,12 +45,14 @@ public class FuzzyCornerBot extends Robot
         while(true) {
             for (int i = 0; i < 30; i++) {
                 turnGunLeft(gunIncrement);
+                fuzzyTracked.decrementValue(0.01);
             }
             gunIncrement *= -1;
-            fuzzyTracked.decrementValue(0.01);
             defuzzificationCounter += 1;
 
             if(defuzzificationCounter >= defuzzificationDelay) {
+                fuzzyHealth.setValue(this.getEnergy()/100.0);
+
                 trackedRange = fuzzyTracked.defuzzificationOfTrackedLevels();
                 healthRange = fuzzyHealth.defuzzificationOfHealthLevels();
                 System.out.print("\nHP: " + healthRange + "\nTracked Level: " + trackedRange);
@@ -106,9 +108,24 @@ public class FuzzyCornerBot extends Robot
     }
     */
 
+    //public void
+
     public void onScannedRobot(ScannedRobotEvent e) {
         // Replace the next line with any behavior you would like
-        fire(1);
+        smartFire(e.getDistance());
+    }
+
+    public void smartFire(double robotDistance) {
+        if (robotDistance > 200 || getEnergy() < 15) {
+            fire(1);
+            //fuzzyHealth.decrementValue(0.01);
+        } else if (robotDistance > 50) {
+            fire(2);
+            //fuzzyHealth.decrementValue(0.02);
+        } else {
+            fire(3);
+            //fuzzyHealth.decrementValue(0.03);
+        }
     }
 
     /**
@@ -119,7 +136,7 @@ public class FuzzyCornerBot extends Robot
         healthRange = fuzzyHealth.defuzzificationOfHealthLevels();
 
         if(trackedRange == TrackedLevels.NOTTRACKED) {
-            fuzzyTracked.incrementValue(0.5);
+            fuzzyTracked.incrementValue(0.4);
             trackedRange = fuzzyTracked.defuzzificationOfTrackedLevels();
 
             if(healthRange == HealthLevels.CRITICAL) {
@@ -128,7 +145,7 @@ public class FuzzyCornerBot extends Robot
         }
 
         else if(trackedRange == TrackedLevels.RATHERNOTTRACKED) {
-            fuzzyTracked.incrementValue(0.5);
+            fuzzyTracked.incrementValue(0.4);
             trackedRange = fuzzyTracked.defuzzificationOfTrackedLevels();
 
             if(healthRange != HealthLevels.HEALTHY) {
@@ -137,14 +154,14 @@ public class FuzzyCornerBot extends Robot
         }
 
         else if(trackedRange == TrackedLevels.RATHERTRACKED) {
-            fuzzyTracked.incrementValue(0.5);
+            fuzzyTracked.incrementValue(0.4);
             trackedRange = fuzzyTracked.defuzzificationOfTrackedLevels();
 
             changeCorner();
         }
 
         else {
-            fuzzyTracked.incrementValue(0.5);
+            fuzzyTracked.incrementValue(0.4);
             trackedRange = fuzzyTracked.defuzzificationOfTrackedLevels();
 
             changeCorner();
