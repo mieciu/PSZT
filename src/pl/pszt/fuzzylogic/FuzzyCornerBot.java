@@ -4,26 +4,19 @@ import java.awt.*;
 //package vis;
 import robocode.*;
 import java.awt.Color;
-
 import static robocode.util.Utils.normalRelativeAngleDegrees;
 
 // API help : http://robocode.sourceforge.net/docs/robocode/robocode/Robot.html
 
-/**
- * FuzzyCornerBot - a robot by (your name here)
- */
 public class FuzzyCornerBot extends Robot
 {
-    /**
-     * run: FuzzyCornerBot's default behavior
-     */
     FuzzyStatement fuzzyHealth;
     HealthLevels healthRange;
     FuzzyStatement fuzzyTracked;
     TrackedLevels trackedRange;
     final int defuzzificationDelay = 2;
     int gunIncrement = 3;
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
     public void run() {
         // Initialization of the robot should be put here
         setColors(Color.black, Color.white, Color.black); // body,gun,radar
@@ -61,60 +54,17 @@ public class FuzzyCornerBot extends Robot
             }
         }
     }
-
-    double distance(double pointAX, double pointAY, double pointBX, double pointBY) {
-        return Math.sqrt((pointBX-pointAX)*(pointBX-pointAX) + (pointBY-pointAY)*(pointBY-pointAY));
-    }
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
     public void changeCorner() {
         ahead(5000);
         turnLeft(90);
     }
-
-    /* To jest CRAP. Nie będzie używane. Zostawiłem na wszelki wypadek
-	void goToClosestCorner() {
-        double mapWidth = getWidth();
-        double mapHeight = getHeight();
-
-        double corner1[] = {0,0};
-        double corner2[] = {0, mapHeight};
-        double corner3[] = {mapWidth, mapHeight};
-        double corner4[] = {mapWidth, 0};
-
-        double myX = getX();
-        double myY = getY();
-        int closestCorner = 1;
-        double smallestDistance = distance(myX, myY, corner1[0], corner1[1]);
-
-        double corner2Distance = distance(myX, myY, corner2[0], corner2[1]);
-        if(corner2Distance < smallestDistance) {
-            smallestDistance = corner2Distance;
-            closestCorner = 2;
-        }
-
-        double corner3Distance = distance(myX, myY, corner3[0], corner3[1]);
-        if(corner2Distance < smallestDistance) {
-            smallestDistance = corner3Distance;
-            closestCorner = 3;
-        }
-
-        double corner4Distance = distance(myX, myY, corner4[0], corner4[1]);
-        if(corner2Distance < smallestDistance) {
-            smallestDistance = corner4Distance;
-            closestCorner = 4;
-        }
-
-
-    }
-    */
-
-    //public void
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
     public void onScannedRobot(ScannedRobotEvent e) {
         // Replace the next line with any behavior you would like
         smartFire(e.getDistance());
     }
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
     public void smartFire(double robotDistance) {
         if (robotDistance > 200 || getEnergy() < 15) {
             fire(1);
@@ -127,10 +77,7 @@ public class FuzzyCornerBot extends Robot
             //fuzzyHealth.decrementValue(0.03);
         }
     }
-
-    /**
-     * onHitByBullet: What to do when you're hit by a bullet
-     */
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
     public void onHitByBullet(HitByBulletEvent e) {
         // Replace the next line with any behavior you would like
         healthRange = fuzzyHealth.defuzzificationOfHealthLevels();
@@ -167,10 +114,7 @@ public class FuzzyCornerBot extends Robot
             changeCorner();
         }
     }
-
-    /**
-     * onHitWall: What to do when you hit a wall
-     */
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
     public void onHitWall(HitWallEvent e) {
         // Replace the next line with any behavior you would like
         //back(20);
